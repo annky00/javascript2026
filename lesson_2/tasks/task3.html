@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+
+<body>
+    <script>
+        let price = parseFloat(prompt("Введіть ціну одиниці"))
+        let qty = parseFloat(prompt("Введіть кількість товару"))
+
+        let sum = price * qty
+        let pdv = sum * 0.05
+
+        document.write(`<pre>Загальна вартість = ${sum}\nПДВ становить: ${pdv}</pre>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
