@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+    <!-- ! Задача 1. Інвестор вклав  S тис. грн на 20 років під 20% річних. Визначити за допомогою циклів суму, яку він одержить (без оподаткування). -->
+    <script>
+        let money = parseInt(prompt('Скільки грошей ви бажаєте вкласти?', '20000'))
+        let yrs = 20
+        let counter = 0
+        while (counter < yrs) {
+            let percent = money * (20 / 100)
+            money += percent
+            counter++
+        }
+
+        document.write(`Через двадцять років ви отримаєте ${money.toFixed(2)}`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

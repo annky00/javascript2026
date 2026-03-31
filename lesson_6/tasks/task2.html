@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <!-- ! Задача 2. Спортсмен-лижник в перший день тренування пробіг 10 км. Кожного наступного дня він збільшував довжину пробігу на P% від довжини пробігу попереднього дня (P – дійсне число, 0 < P < 50). Визначити, після якого дня тренування сумарний пробіг лижника за всі дні перевищить 200 км. Вивести знайдену кількість днів K (ціле) і сумарний пробіг S (дійсне число). -->
+    <script>
+        let days = 1
+        let totalDistance = 10
+        while (totalDistance < 200) {
+            let percent = (Math.floor(Math.random() * 49) + 1) / 100
+            totalDistance = totalDistance + (totalDistance * percent)
+            days++
+        }
+        document.write(`<h1>За ${days} днів спортсмен пробіг ${totalDistance.toFixed(2)}км</h1>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
