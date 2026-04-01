@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <!-- ! Задача 2. Створити функцію, яка за номером дня дозволяє з’ясувати чи є цей день робочим. -->
+    <script>
+        day = parseInt(prompt("Enter the day number", "4"))
+        function isWorkDay(n) {
+            n = day
+            if (n <= 5 && n > 0) return "working day"
+            else if (n > 5 && n < 8) return "weekend"
+            else return "incorrect day number"
+        }
+
+        document.write(`<h1>${day} is ${isWorkDay()}</h1>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

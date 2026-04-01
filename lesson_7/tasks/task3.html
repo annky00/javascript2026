@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+
+<body>
+    <!-- ! Задача 3. Створити окремі функції, які для 4 чисел знаходять: 1.суму; 2.добуток; 3.середнє арифметичне; 4.мінімальне значення. -->
+    <script>
+
+        let num1 = parseInt(prompt("Enter the first number", "5"))
+        let num2 = parseInt(prompt("Enter the second number", "8"))
+        let num3 = parseInt(prompt("Enter the third number", "12"))
+        let num4 = parseInt(prompt("Enter the fourth number", "4"))
+
+        function getSum(a, b, c, d) {
+            a = num1
+            b = num2
+            c = num3
+            d = num4
+            let sum = a + b + c + d
+            return sum
+        }
+
+        function getProduct(a, b, c, d) {
+            a = num1
+            b = num2
+            c = num3
+            d = num4
+            let product = a * b * c * d
+            return product
+        }
+
+        function getAvg(a, b, c, d) {
+            a = num1
+            b = num2
+            c = num3
+            d = num4
+            let avg = (a + b + c + d) / 4
+            return avg
+        }
+
+        function getMin(a, b, c, d) {
+            a = num1
+            b = num2
+            c = num3
+            d = num4
+            let min = Math.min(a, b, c, d)
+            return min
+        }
+
+        document.write(`<h1>Your numbers: ${num1}, ${num2}, ${num3}, ${num4}. Sum: ${getSum()}, Product: ${getProduct()}, Average: ${getAvg().toFixed(1)}, Min: ${getMin()}</h1>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

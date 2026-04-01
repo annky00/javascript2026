@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+
+<body>
+    <!-- ! Задача 5. . Створити окремі функції, які переводять: 1. Сантиметри у дюйми; 2. Кілограми у фунти; 3. Кілометри у милі.  -->
+    <script>
+        let centimeters = parseInt(prompt("Centimeters = ", "100"))
+        let kilograms = parseInt(prompt("Kilograms = ", "35"))
+        let kilometers = parseInt(prompt("Kilometers = ", "50"))
+
+        function getInch(n) {
+            let inch = n / 2.54
+            return inch
+        }
+
+        function getPound(n) {
+            let pound = n / 0.45359237
+            return pound
+        }
+
+        function getMile(n) {
+            let mile = n / 1.609344
+            return mile
+        }
+
+        document.write(`<h1>${centimeters} cm is ${getInch(centimeters).toFixed(2)} inches, ${kilograms} kg is ${getPound(kilograms).toFixed(2)} pounds, ${kilometers} km is ${getMile(kilometers).toFixed(2)} miles. </h1> `)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

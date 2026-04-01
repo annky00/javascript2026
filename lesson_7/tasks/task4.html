@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+
+<body>
+    <!-- ! Задача 4. Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних, кількість додатних, кількість більших за 100. -->
+    <script>
+        let num1 = parseInt(prompt("Enter the first number", "5"))
+        let num2 = parseInt(prompt("Enter the second number", "-8"))
+        let num3 = parseInt(prompt("Enter the third number", "12"))
+
+        function fewMathResults(a, b, c) {
+            let even = 0, positive = 0, moreThanHund = 0
+
+            function checkNum(num) {
+                if (num % 2 === 0) even++
+                if (num > 0) positive++
+                if (num > 100) moreThanHund++
+            }
+            checkNum(a)
+            checkNum(b)
+            checkNum(c)
+            return `Even numbers: ${even}, Positive numbers: ${positive}, Numbers that more than a hundred: ${moreThanHund}`
+        }
+
+        document.write(`<h1>Your numbers: ${num1}, ${num2}, ${num3} <br> ${fewMathResults(num1, num2, num3)}</h1>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
