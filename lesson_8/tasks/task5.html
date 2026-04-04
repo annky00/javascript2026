@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+
+<body>
+    <!-- ! Задача 5. Дано послідовність оцінок учня. Підрахувати кількість: -->
+    <!-- ! 1)	двійок -->
+    <!-- ! 2)	кількість хороших оцінок (добре, відмінно); -->
+    <!-- ! 3)	кількість оцінок, які нижче середнього. -->
+    <script>
+        let grades = []
+        function randomGrades(q, array) {
+            for (let i = 0; i < q; i++) grades.push(Math.floor(Math.random() * 5) + 1)
+            return array
+        }
+
+        function howManyFs(array) {
+            let counter = 0
+            for (let i = 0; i < array.length; i++) if (array[i] === 2) counter++
+            return counter
+        }
+
+        function howManyGoodGrades(array) {
+            let counter = 0
+            for (let i = 0; i < array.length; i++) if (array[i] === 5 || array[i] === 4) counter++
+            return counter
+        }
+
+        function howManyGradesBelowAvg(array) {
+            let counter = 0
+            for (let i = 0; i < array.length; i++) if (array[i] < 3) counter++
+            return counter
+        }
+
+        let qty = parseInt(prompt("Enter the grades quantity", "5"))
+
+
+        document.write(`<h1>Ваші оцінки: ${randomGrades(qty, grades)}</h1>`)
+        document.write(`<h1>Всього двійок: ${howManyFs(grades)}</h1>`)
+        document.write(`<h1>Всього хороших оцінок: ${howManyGoodGrades(grades)}</h1>`)
+        document.write(`<h1>Всього оцінок, які нижче середнього: ${howManyGradesBelowAvg(grades)}</h1>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

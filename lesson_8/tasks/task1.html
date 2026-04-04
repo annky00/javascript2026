@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+    <!-- ! Задача 1. Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча би одна трійка)). -->
+    <script>
+        let grades = []
+
+        function randomGrades(q, array) {
+            for (let i = 0; i < q; i++) grades.push(Math.floor(Math.random() * 4) + 2)
+            return array
+        }
+
+        function getAvg(array) {
+            let avg = 0
+            for (let i = 0; i < array.length; i++) avg += array[i]
+            avg /= array.length
+            return avg
+        }
+
+        function getCat(array) {
+            let category = "хорошист"
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] === 2) {
+                    category = "двієчник"
+                    break;
+                }
+                else if (array[i] === 3) {
+                    category = "трієчник"
+                }
+            }
+
+            if (category === "хорошист" && getAvg(array) === 5) category = "відмінник"
+
+            return category
+        }
+
+        let qty = parseInt(prompt("Enter the grades quantity", "5"))
+
+        document.write(`<h1>Ваші оцінки: ${randomGrades(qty, grades)}</h1>`)
+        document.write(`<h1>Ваш середній бал: ${getAvg(grades)}</h1>`)
+        document.write(`<h1>Ви ${getCat(grades)}</h1>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

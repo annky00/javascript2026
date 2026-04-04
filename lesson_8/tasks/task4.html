@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+
+<body>
+    <!-- ! Задача 4. Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які : -->
+    <!-- ! •	починаються на букву «А» (для отримання першої літери можна також звернутися до номера авто як string ніби як до масиву за номером 0 - autoNum[0]-перша літера); -->
+    <!-- ! •	перша і остання літери співпадають; -->
+    <!-- ! •	складаються з більше ніш 5 символів; -->
+    <script>
+        let autoNum = ["KA7349BK", "AX9921CO", "KI4004AA", "AE5823ZA", "DC8830ZA", "AB7777CB"]
+        function findFirstLetter(array) {
+            let counter = 0
+            for (let i = 0; i < array.length; i++) if (array[i][0] === "A") counter++
+            return counter
+        }
+
+        function findFirstAndLastLetter(array) {
+            let counter = 0
+            for (let i = 0; i < array.length; i++) if (array[i][0] === array[i][array[i].length - 1]) counter++
+            return counter
+        }
+
+        function findLettersQty(array) {
+            let counter = 0
+            for (let i = 0; i < array.length; i++) if (array[i].length > 5) counter++
+            return counter
+        }
+
+        document.write(`<h1>Кількість номерів, що починаються на літеру А: ${findFirstLetter(autoNum)}</h1>`)
+        document.write(`<h1>Кількість номерів в яких співпадають перша і остання літери: ${findFirstAndLastLetter(autoNum)}</h1>`)
+        document.write(`<h1>Кількість номерів, що складаються більше ніж з 5 символів: ${findLettersQty(autoNum)}</h1>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
