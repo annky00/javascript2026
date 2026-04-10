@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8</title>
+</head>
+
+<body>
+    <!-- ! Задача 8. Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А» -->
+    <script>
+        let autoNum = ["KA7349BK", "AX9921CO", "KI4004AA", "AE5823ZA", "DC8830ZA", "AB7777CB"]
+
+        function getAutoNumThatStartedAtA(arr) {
+            let newAutoNum = []
+            arr.forEach(element => {
+                if (element[0] === "A") newAutoNum.push(element)
+            });
+            return newAutoNum
+        }
+
+        document.write(`<h1>Auto numbers that started at A: ${getAutoNumThatStartedAtA(autoNum).join(", ")}</h1>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

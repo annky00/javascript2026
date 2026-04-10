@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 9</title>
+</head>
+
+<body>
+    <!-- ! Задача 9. Дано масив імен. Сформувати масив з перших літер цих імен. -->
+    <script>
+        let names = ["Ivan", "Mariya", "Oksana", "Olexandr", "Oleg", "Kyrylo", "Anastasiya"]
+        function getFirstLetter(arr) {
+            let firstLetters = []
+            arr.forEach(element => {
+                firstLetters.push(element[0])
+            });
+            return firstLetters
+        }
+        document.write(`<h1>First letters of the names: ${getFirstLetter(names).join(", ")}</h1>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

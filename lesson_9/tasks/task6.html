@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6</title>
+</head>
+
+<body>
+    <!-- ! Задача 6. Дано масив елементів. Усі елементи, які більші за перший елемент помножити на 2-->
+    <script>
+        let array = [20, 11, 8, -9, 25, -20, 35, 5, 0]
+
+        function getProduct(arr) {
+            let product = []
+            arr.forEach(element => {
+                if (element > arr[0]) product.push(element * 2)
+            });
+            return product
+        }
+
+        document.write(`<h1>Your numbers: ${getProduct(array).join(", ")}</h1>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

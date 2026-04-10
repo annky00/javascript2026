@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 10</title>
+</head>
+
+<body>
+    <!-- ! Задача 10. Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде містити величину сплаченого податку у грн. -->
+    <script>
+        let prices = [208, 1112, 865, 987, 250, 2035, 3568, 658, 1000]
+        function getTax(arr) {
+            let taxes = []
+            arr.forEach(element => {
+                taxes.push(element * 0.2)
+            });
+            return taxes
+        }
+
+        document.write(`<h1>Prices: ${prices.join(", ")}</h1>`)
+        document.write(`<h1>Paid taxes: ${getTax(prices).join(", ")}</h1>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

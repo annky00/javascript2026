@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+
+<body>
+    <!-- ! Задача 4. Дано масив елементів. Вивести на екран елементи, що більші за 100 -->
+    <script>
+        let array = [100, 120, 48, 659, 25, 320, 7835, 65, 80]
+        function numbersMoreThanHundred(arr) {
+            let newArray = []
+            for (let i of arr) {
+                if (i > 100) newArray.push(i)
+            }
+            return newArray
+        }
+        document.write(`<h1>Your numbers that more than 100: ${numbersMoreThanHundred(array).join(", ")}</h1>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

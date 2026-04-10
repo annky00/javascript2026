@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+    <!-- ! Задача 1. 1. Користувач вводить кількість елементів. Створити масив, що складається з вказаної кількості елементів заповнених нулями. -->
+    <script>
+        function makeArray(n) {
+            let arr = new Array(n)
+            arr.fill(0)
+            return arr
+        }
+
+        let number = parseInt(prompt("Enter element's quantity", "5"))
+        document.write(`<h1>Your array: ${makeArray(number).join(", ")}</h1>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
