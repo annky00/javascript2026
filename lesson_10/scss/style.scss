@@ -1,0 +1,89 @@
+@use "sass:math";
+@use "_reset.scss";
+
+// [class*="__container"] {
+// 	max-width: 1300px;
+// 	padding-left: 15px;
+// 	padding-right: 15px;
+// 	margin: 0 auto;
+// }
+
+// .wrapper {
+// 	min-height: 100%;
+// 	overflow: clip;
+
+// 	display: flex;
+// 	flex-direction: column;
+
+// 	&>main {
+// 		flex-grow: 1;
+// 	}
+// }
+
+body {
+	font-size: 25px;
+	background-color: rgba(68, 2, 2, 0.877);
+	font-family: "Arial", sans-serif;
+	color: #fff;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.header {
+	&__container {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+
+	&__title {
+		font-size: 30px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+}
+
+.tasks {
+	*:not(:last-child) {
+		margin-bottom: 10px;
+	}
+}
+
+.task {
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
+
+	text-align: center;
+
+}
+
+.answer {
+	transition: scale 0.5s;
+	color: rgb(0, 0, 0);
+	text-transform: uppercase;
+	font-weight: 600;
+
+	&:visited {
+		color: rgb(255, 255, 255);
+	}
+
+	&:hover {
+		scale: 1.2;
+	}
+}
+
+.question {
+	text-align: left;
+}
+
+.footer {
+
+	&__container {
+		padding-bottom: 20px;
+	}
+
+	&__text {
+		text-align: center;
+	}
+}
