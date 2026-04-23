@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 11</title>
+</head>
+
+<body>
+    <!-- ! Задача 11. Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди. -->
+    <script>
+        let emptyField = [
+            ["1-1", "1-2", "1-3", "1-4", "1-5", "1-6",],
+            ["2-1", "2-2", "2-3", "2-4", "2-5", "2-6",],
+            ["3-1", "3-2", "3-3", "3-4", "3-5", "3-6",],
+            ["4-1", "4-2", "4-3", "4-4", "4-5", "4-6",],
+            ["5-1", "5-2", "5-3", "5-4", "5-5", "5-6",],
+            ["6-1", "6-2", "6-3", "6-4", "6-5", "6-6",],
+        ]
+
+        function makeRandomShips(field, shipQty) {
+
+            let qty = 0
+            while (qty < shipQty) {
+                let randomRow = Math.floor(Math.random() * 6)
+                let randomColumn = Math.floor(Math.random() * 6)
+                if (field[randomRow][randomColumn] !== "*") {
+                    // field[randomRow][randomColumn] = "*"  // variant 1
+                    field[randomRow].splice(randomColumn, 1, "*") // variant 2 (more ram)
+                    qty++
+                }
+            }
+            return field
+        }
+
+        const filledField = makeRandomShips(emptyField, 5)
+
+
+        console.log(filledField); // test
+
+        function startGame(bombs, field) {
+            let shipCounter = 5
+            let attempt = 0
+            while (attempt < bombs && shipCounter > 0) {
+                let rowNum = parseInt(prompt("Enter row number", "2"))
+                let columnNum = parseInt(prompt("Enter column number", "4"))
+                if (field[rowNum - 1][columnNum - 1] === "*") {
+                    alert("Nice shot!")
+                    attempt++
+                    shipCounter--
+                    field[rowNum - 1][columnNum - 1] = "+"
+                } else {
+                    alert("Missed :(")
+                    attempt++
+                }
+            }
+            if (shipCounter === 0) {
+                document.write("<h1>Congratulations! You are the winner!</h1>")
+            } else document.write(`<h1>Looser. Ships map: <br> ${filledField.join("<br>")}</h1>`)
+        }
+
+        startGame(5, filledField)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

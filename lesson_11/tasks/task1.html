@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+    <!-- ! Задача 1. Дано прибуток магазину за К тижнів. Знайти загальний прибуток -->
+    <script>
+
+        const getRandomRow = (elCount, min, max) => Array.from({ length: elCount }, () => min + Math.floor(Math.random() * (max - min + 1)))
+        const getRandomMatrix = (rowCount, colCount, min, max) => Array.from({ length: rowCount }, () => getRandomRow(colCount, min, max))
+
+        const rowNum = parseInt(prompt("Enter the numbers of rows", "5"))
+        const colNum = parseInt(prompt("Enter the numbers of columns", "4"))
+        const minVal = parseInt(prompt("Enter the min value", "150"))
+        const maxVal = parseInt(prompt("Enter the max value", "650"))
+
+        const profitArray = getRandomMatrix(rowNum, colNum, minVal, maxVal)
+
+        document.write(`<h1>Profit table: <br> ${profitArray.join("<br>")}</h1>`)
+
+        let totalProfit = 0
+        for (let week of profitArray) {
+            for (let day of week) {
+                totalProfit += day
+            }
+        }
+
+        document.write(`<h1>Total profit: ${totalProfit}</h1>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

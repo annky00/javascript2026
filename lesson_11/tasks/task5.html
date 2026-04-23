@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+
+<body>
+    <!-- ! Задача 5. Дано величини прибутку від кожного працівника рекламної компанії, що складається з К філіалів. У кожному філіалі є певна кількість працівників (у кожному філіалі кількість працівників може бути різною). -->
+    <script>
+        const getRandomProfit = (elCount, min, max) => Array.from({ length: elCount }, () => min + Math.floor(Math.random() * (max - min + 1)))
+
+        const getRandomWorkers = (min, max) => min + Math.floor(Math.random() * (max - min + 1))
+
+        const getRandomBranches = (branchesNum, min, max) => Array.from({ length: branchesNum }, () => getRandomProfit(getRandomWorkers(15, 25), min, max))
+
+        const branches = parseInt(prompt("Enter the branches number", "5"))
+
+        const profitTable = getRandomBranches(branches, 1500, 5000)
+
+        document.write(`<h1>Branches table: <br> ${profitTable.join("<br>")}</h1>`)
+
+        // 1) Знайти загальний прибуток.
+        let totalProfit = 0
+        for (const branch of profitTable) {
+            for (const worker of branch) {
+                totalProfit += worker
+            }
+        }
+
+        document.write(`<h1>Total profit: ${totalProfit}</h1>`)
+
+
+        // 2) Знайти прибуток у кожному із філіалів.
+
+        let branchesProfit = []
+        for (const branch of profitTable) {
+            branchesProfit.push(branch.reduce((prevVal, curVal) => prevVal + curVal, 0))
+        }
+
+        document.write(`<h1>Branches profit: <br> ${branchesProfit.join("<br>")}</h1>`)
+
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

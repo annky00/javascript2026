@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8</title>
+</head>
+
+<body>
+    <!-- ! Задача 8. Дано покази продажу автомобілів компанії за країнами, областями, містами і моделями.(поки зберігаємо за номерами (номер країни, номер області, номер міста, номер моделі) як 4-вимірний масив). Визначити: -->
+    <script>
+
+        const sales = [
+            [
+                // країна 1
+                [
+                    // область 1
+                    [5, 2, 3], // місто 1: модель1, модель2, модель3
+                    [1, 0, 4], // місто 2
+                ],
+                [
+                    // область 2
+                    [2, 3, 1], // місто 1
+                    [0, 2, 2], // місто 2
+                ],
+            ],
+            [
+                // країна 2
+                [
+                    // область 1
+                    [3, 1, 2], // місто 1
+                    [2, 2, 1], // місто 2
+                ],
+                [
+                    // область 2
+                    [4, 0, 3], // місто 1
+                    [1, 1, 2], // місто 2
+                ],
+            ],
+        ]
+
+        // 1) загальну кількість проданих авто
+        let totalSold = sales.flat(3).reduce((prevVal, curVal) => prevVal + curVal, 0)
+
+        document.write(`<h1>Total was sold: ${totalSold}</h1>`)
+
+        // 2) загальну кількість проданих моделей кожного виду
+        let totalSoldByModel = [0, 0, 0]
+        for (const country of sales) {
+            for (const region of country) {
+                for (const city of region) {
+                    for (let i = 0; i < 3; i++) {
+                        totalSoldByModel[i] += city[i]
+
+                    }
+                }
+            }
+        }
+
+        document.write(`<h1>Total was sold by models: ${totalSoldByModel.join(", ")}</h1>`)
+        // 3) загальну кількість проданих авто у кожній із країн
+
+        let totalSoldByCountries = []
+        for (const country of sales) {
+            totalSoldByCountries.push(country.flat(2).reduce((prevVal, curVal) => prevVal + curVal, 0))
+        }
+
+        document.write(`<h1>Total was sold in each country: ${totalSoldByCountries.join(", ")}</h1>`)
+
+        // 4) загальну кількість проданих моделей у кожному із міст
+        let totalSoldByCity = []
+        for (const country of sales) {
+            for (const region of country) {
+                for (const city of region) {
+                    totalSoldByCity.push(city.flat().reduce((prevVal, curVal) => prevVal + curVal, 0))
+                }
+            }
+        }
+        document.write(`<h1>Total was sold in each city: ${totalSoldByCity.join(", ")}</h1>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

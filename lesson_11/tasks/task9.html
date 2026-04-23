@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 9</title>
+</head>
+
+<body>
+    <!-- ! Задача 9. Знайти суми елементів у вказаній області (зафарбована область охоплює відповідну половину рядків і стовпців) -->
+    <script>
+        const table = [
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6],
+        ];
+
+        console.log(table); // для перевірки
+
+        document.write(`<h1>${table.join("<br>")}</h1>`)
+
+
+        // 1)	номери рядків від 0 до половини, стовпці від 0 до половини
+        let firstSum = 0
+        for (let row = 0; row < table.length / 2; row++) {
+            for (let column = 0; column < table[row].length / 2; column++) {
+                firstSum += table[row][column]
+            }
+        }
+        document.write(`<h3>1) Сума рядків від 0 до половини, стовпців від 0 до половини: ${firstSum} </h3>`)
+        // 2)	номери рядків від 0 до половини, стовпці від половини до кінця
+        let secondSum = 0
+        for (let row = 0; row < table.length / 2; row++) {
+            for (let column = table[row].length / 2; column < table[row].length; column++) {
+                secondSum += table[row][column]
+            }
+        }
+        document.write(`<h3>2) Сума рядків від 0 до половини, стовпці від половини до кінця: ${secondSum} </h3>`)
+        // 3)   номери рядків(від половини до кінця, стовпці від 0 до половини
+        let thirdSum = 0
+        for (let row = table.length / 2; row < table.length; row++) {
+            for (let column = 0; column < table[row].length / 2; column++) {
+                thirdSum += table[row][column]
+            }
+        }
+        document.write(`<h3>3) Сума рядків від половини до кінця, стовпці від 0 до половини: ${thirdSum} </h3>`)
+        // 4) номери рядків від половини до кінця, стовпці від половини до кінця
+        let forthSum = 0
+        for (let row = table.length / 2; row < table.length; row++) {
+            for (let column = table[row].length / 2; column < table[row].length; column++) {
+                forthSum += table[row][column]
+            }
+        }
+        document.write(`<h3>4) Сума рядків від половини до кінця, стовпці від половини до кінця: ${forthSum} </h3>`)
+        // 5) Суму парних рядків
+
+        let fifthSum = 0
+        for (let row = 0; row < table.length; row += 2) {
+            for (let column = 0; column < table[row].length; column++) {
+                fifthSum += table[row][column]
+            }
+
+        }
+        document.write(`<h3>5) Сума парних рядків: ${fifthSum} </h3>`)
+        // 6) Суму непарних стовпців
+
+        let sixthSum = 0
+        for (let row = 0; row < table.length; row++) {
+            for (let column = 1; column < table[row].length; column += 2) {
+                sixthSum += table[row][column]
+            }
+        }
+        document.write(`<h3>6) Сума непарних стовпців: ${sixthSum} </h3>`)
+
+        // 7) У парних рядках – непарні стовпці, у непарних – парні.
+
+        let oddColumnsSum = 0
+        let evenColumnsSum = 0
+        for (let row = 0; row < table.length; row++) {
+            if (row % 2 === 0) {
+                for (let column = 1; column < table[row].length; column += 2) {
+                    oddColumnsSum += table[row][column]
+                }
+            } else {
+                for (let column = 0; column < table[row].length; column += 2) {
+                    evenColumnsSum += table[row][column]
+                }
+
+            }
+
+        }
+
+        document.write(`<h3>7) Сума у парних рядках – непарних стовпців = ${oddColumnsSum}, у непарних – парних = ${evenColumnsSum} </h3>`)
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

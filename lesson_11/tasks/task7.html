@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7</title>
+</head>
+
+<body>
+    <!-- ! Задача 7. Дано зріст учнів у К школах. Сформувати список, тільки з тих величин зросту, які більші за 150см -->
+    <script>
+        const getRandomHeight = (elCount, min, max) => Array.from({ length: elCount }, () => min + Math.floor(Math.random() * (max - min + 1)))
+
+        const getRandomPupils = (min, max) => min + Math.floor(Math.random() * (max - min + 1))
+
+        const getRandomClasses = (classesNum, min, max) => Array.from({ length: classesNum }, () => getRandomHeight(getRandomPupils(5, 12), min, max))
+
+        const getRandomSchools = (schoolsNum, classesNum, min, max) => Array.from({ length: schoolsNum }, () => getRandomClasses(classesNum, min, max))
+
+        const schools = parseInt(prompt("Enter the schools number", "3"))
+
+
+        const schoolsTable = getRandomSchools(schools, 4, 140, 198)
+
+        document.write("<h1>Pupils table: <br></h1>")
+        for (const school of schoolsTable) {
+            document.write(`<h1>${school.join("<br>")}</h1>`)
+        }
+
+
+        let higherPupilsList = schoolsTable.flat(2).filter((height) => height > 150)
+
+        document.write(`<h2 style="word-wrap: break-word;">List of pupils that higher than 150cm<br>${higherPupilsList}</h2>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 10</title>
+</head>
+
+<body>
+    <!-- ! Задача 10. Дано інформацію про прибуток К магазинів протягом тижня. Знайти: -->
+    <script>
+        const getRandomRow = (elCount, min, max) => Array.from({ length: elCount }, () => min + Math.floor(Math.random() * (max - min + 1)))
+        const getRandomMatrix = (rowCount, colCount, min, max) => Array.from({ length: rowCount }, () => getRandomRow(colCount, min, max))
+
+        const rowNum = parseInt(prompt("Enter the number of shops", "5"))
+
+        const profitArray = getRandomMatrix(rowNum, 7, 85, 785)
+
+        document.write(`<h1>Profit table: <br> ${profitArray.join("<br>")}</h1>`)
+
+        // 1) загальний прибуток кожного масиву за тиждень;
+        // let totalProfit = 0
+
+        // for (let shop = 0; shop < profitArray.length; shop++) {
+        //     for (const day of profitArray[shop]) {
+        //         totalProfit += day
+        //     }
+        //     document.write(`<h3>1) Total profit of ${shop + 1} shop is ${totalProfit}<br></h3>`)
+        //     totalProfit = 0
+        // }
+
+        for (let shop = 0; shop < profitArray.length; shop++) {
+            let totalProfit = profitArray[shop].reduce((prevVal, curVal) => prevVal + curVal, 0)
+            document.write(`<h3>1) Total profit of ${shop + 1} shop = ${totalProfit}<br></h3>`)
+
+        }
+
+
+        // 2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+
+
+        const daysProfits = profitArray.reduce((totals, shop) => {
+            return totals.map((dayTotal, index) => dayTotal + shop[index]);
+        }, [0, 0, 0, 0, 0, 0, 0]);
+
+        const days = ["monday's", "tuesday's", "wednesday's", "thursday's", "friday's", "saturday's", "sunday's"];
+        days.forEach((day, index) => {
+            document.write(`<h3>2) Total ${day} profit = ${daysProfits[index]}</h3>`);
+        });
+
+        // 3) загальний прибуток за робочі дні
+        const totalWorkingDaysProfit = profitArray.reduce((total, shop) => {
+            const shopWorkingDaysProfit = shop.slice(0, 5).reduce((sum, val) => sum + val, 0)
+
+            return total + shopWorkingDaysProfit
+        }, 0)
+
+        document.write(`<h3>3) Total profit for working days = ${totalWorkingDaysProfit}</h3>`);
+
+        // 4) загальний прибуток за вихідні дні
+        const totalWeekendsProfit = profitArray.reduce((total, shop) => {
+            const shopWeekendsProfit = shop.slice(5).reduce((sum, val) => sum + val, 0)
+
+            return total + shopWeekendsProfit
+        }, 0)
+
+        document.write(`<h3>4) Total profit for weekends = ${totalWeekendsProfit}</h3>`);
+
+        // 5) максимальний прибуток за середу
+
+        let wednesdayProfit = []
+        for (const shop of profitArray) {
+            wednesdayProfit.push(shop.slice(2, 3))
+        }
+        let maxValue = Math.max(...wednesdayProfit)
+        document.write(`<h3>5) Max profit for wednesday = ${maxValue}</h3>`);
+
+        // 6) сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200
+        const totalList = profitArray.flat(Infinity)
+        const totalListHigherThanTwoHundred = totalList.filter(val => val > 200)
+
+        document.write(`<h3>6) Total list with values higher than two hundred = ${totalListHigherThanTwoHundred.join(", ")}</h3>`);
+
+        // 7) відсортувати кожен тиждень за зростанням
+        for (const shop of profitArray) {
+            shop.sort((a, b) => a - b)
+        }
+
+        document.write(`<h2>7) Sorted profit array = <br> ${profitArray.join("<br>")}</h2>`);
+
+        // 8) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+
+        profitArray.sort((a, b) => {
+            const maxA = Math.max(...a)
+            const maxB = Math.max(...b)
+            return maxB - maxA
+        })
+
+        document.write(`<h2>7) Sorted profit array by max value = <br> ${profitArray.join("<br>")}</h2>`);
+
+
+
+
+        // 9) упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).
+
+        profitArray.sort((a, b) => {
+            let sumA = 0
+            for (const el of a) {
+                sumA += el
+            }
+            let sumB = 0
+            for (const el of b) {
+                sumB += el
+            }
+            return sumB - sumA
+        })
+
+        document.write(`<h2>7) Sorted profit array by sum = <br> ${profitArray.join("<br>")}</h2>`);
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

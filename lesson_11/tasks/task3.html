@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+
+<body>
+    <!-- ! Задача 3. Дано зріст учнів у школі (у кожному із класів кількість учнів може бути різною). Знайти: -->
+    <script>
+        const getRandomHeight = (elCount, min, max) => Array.from({ length: elCount }, () => min + Math.floor(Math.random() * (max - min + 1)))
+
+        const getRandomPupils = (min, max) => min + Math.floor(Math.random() * (max - min + 1))
+
+        const getRandomClasses = (classesNum, min, max) => Array.from({ length: classesNum }, () => getRandomHeight(getRandomPupils(15, 30), min, max))
+
+        const classes = parseInt(prompt("Enter the classes number", "5"))
+
+
+        const pupilsTable = getRandomClasses(classes, 162, 198)
+
+        console.log(pupilsTable);
+
+        document.write(`<h1>Pupils table: <br> ${pupilsTable.join("<br>")}</h1>`)
+
+        // 1)найвищого учня у школі
+
+        let higherInSchool = -Infinity
+
+        for (const classNum of pupilsTable) {
+            for (const pupil of classNum) pupil > higherInSchool ? higherInSchool = pupil : higherInSchool
+        }
+
+        document.write(`<h1>The highest pupil in the school: ${higherInSchool}</h1>`)
+
+
+        // 2)найвищого учня у кожному класі
+
+        let higherInClass = []
+
+        for (const classNum of pupilsTable) {
+            higherInClass.push(Math.max(...classNum))
+        }
+
+        document.write(`<h1>The highest pupil in the every class: ${higherInClass}</h1>`)
+
+
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
