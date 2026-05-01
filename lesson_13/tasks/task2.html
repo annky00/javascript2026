@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <!-- ! Задача 2. Дано масив імен спортсменів. Розробити програму для виведення усіх можливих результатів змагань (списки імен у відповідності до місць, які вони займуть). -->
+    <script>
+        let sportsmenNames = ["Messi", "Ronaldo", "Shevchenko"]
+
+        function getWinners(sportsmenArray) {
+            let winners = []
+            function recurse(currentSportsmen) {
+                if (sportsmenArray.length === currentSportsmen.length) {
+                    winners.push(currentSportsmen)
+                    return
+                }
+                else {
+                    for (let i = 0; i < sportsmenArray.length; i++) {
+                        if (!currentSportsmen.includes(sportsmenArray[i]))
+                            recurse([...currentSportsmen, sportsmenArray[i]])
+                    }
+                }
+            }
+            recurse([])
+            return winners
+        }
+
+        document.write(`<h3>All possible results: <br> ${getWinners(sportsmenNames).join("<br>")}</h3>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

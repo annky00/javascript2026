@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+
+<body>
+    <!-- ! Задача 3. Виведіть всі можливі наступні комбінації ходів користувачів у грі“Хрестики-нулики”, починаючи з деякої заданої ситуації (тобто маємо двовимірний масив з елементами : 0 - нулик, Х - хрестик, пробіл - ще не зайнято, і вам треба самостійно вивести всі можливі шляхи заповнення ще незаповнених клітинок (де пробіли)). Поки можна не підраховувати чи вже є 3 хрестики чи 3 нулики у рядок. -->
+    <script>
+
+        let field = [
+            [0, "X", " "],
+            ["X", " ", " "],
+            [" ", "X", " "],
+        ]
+
+        function getFullField(fieldArray) {
+            let fullField = []
+
+            function recurse(row, col) {
+                if (col === 3) {
+                    row = row + 1
+                    col = 0
+                }
+
+                if (row === 3) {
+                    fullField.push([
+                        [...fieldArray[0]],
+                        [...fieldArray[1]],
+                        [...fieldArray[2]]
+                    ])
+                    return
+                }
+
+                if (fieldArray[row][col] === " ") {
+                    fieldArray[row][col] = "X"
+                    recurse(row, col + 1)
+
+                    fieldArray[row][col] = 0
+                    recurse(row, col + 1)
+
+                    fieldArray[row][col] = " "
+                } else recurse(row, col + 1)
+
+            }
+            recurse(0, 0)
+            return fullField
+        }
+
+
+
+        document.write(`<h3>All possible results: <br> ${getFullField(field).join("<br>")}</h3>`)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
