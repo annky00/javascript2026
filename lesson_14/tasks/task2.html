@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <!-- ! Задача 2. Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців. -->
+    <script>
+        let date = {
+            day: 7,
+            month: 5,
+            year: 2026
+        }
+
+        function calcYear(obj, monthLater) {
+            sumMonth = obj.month + monthLater
+            if (sumMonth > 12) {
+                sumMonth % 12 === 0 ? obj.month = 1 : obj.month = sumMonth % 12
+                obj.year += parseInt(sumMonth / 12)
+
+            } else obj.month = sumMonth
+            return obj
+        }
+
+        let monthQty = parseInt(prompt("Скільки місяців пройшло?", "10"))
+
+        console.log(calcYear(date, monthQty));
+        document.write(`<h3>Через ${monthQty}міс. буде ${date.year}р.</h3>`)
+
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

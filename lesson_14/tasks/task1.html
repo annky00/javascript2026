@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+    <!-- ! Задача 1. Описати масив об'єктів – сайтів розроблених компанією з такими властивостями  -->
+    <!-- ! ----- Властивості ------
+	* назва компанії на час розробки (назву періодично змінюють)
+	* власник компанії
+	* спонсори (масив спонсорів)
+      * прізвище спонсора
+      * ім’я  спонсора
+      * сума вкладень спонсора
+    * рік випуску
+    * вартість сайту-->
+
+    <script>
+        let sitesData = [
+            {
+                site: "finance.com",
+                company: {
+                    currentCompanyName: "SoftServe",
+                    companyOwner: "Persson",
+                    sponsors: [
+                        {
+                            lastName: "Shevchenko",
+                            firstName: "Andriy",
+                            investmentsSum: 15680
+                        },
+                        {
+                            lastName: "Kyrychok",
+                            firstName: "Mariya",
+                            investmentsSum: 25894
+                        },
+                        {
+                            lastName: "Usyk",
+                            firstName: "Oleksandr",
+                            investmentsSum: 89654
+                        }
+                    ]
+                },
+                productionYear: 2012,
+                totalPrice: 1059876
+            },
+            {
+                site: "finance.com",
+                company: {
+                    currentCompanyName: "SoftServe",
+                    companyOwner: "Persson",
+                    sponsors: [
+                        {
+                            lastName: "Shevchenko",
+                            firstName: "Andriy",
+                            investmentsSum: 15680
+                        },
+                        {
+                            lastName: "Kyrychok",
+                            firstName: "Mariya",
+                            investmentsSum: 25894
+                        },
+                        {
+                            lastName: "Usyk",
+                            firstName: "Oleksandr",
+                            investmentsSum: 89654
+                        }
+                    ]
+                },
+                productionYear: 2012,
+                totalPrice: 8000
+            },
+            {
+                site: "forest.ua",
+                company: {
+                    currentCompanyName: "Tangerine",
+                    companyOwner: "Persson",
+                    sponsors: [
+                        {
+                            lastName: "Fabio",
+                            firstName: "Alex",
+                            investmentsSum: 4687
+                        },
+                        {
+                            lastName: "Malyshko",
+                            firstName: "Olga",
+                            investmentsSum: 16748
+                        },
+                        {
+                            lastName: "Dobryi",
+                            firstName: "Maksym",
+                            investmentsSum: 3548
+                        }
+                    ]
+                },
+                productionYear: 2008,
+                totalPrice: 658987
+            },
+            {
+                site: "minecraft.net",
+                company: {
+                    currentCompanyName: "Mojang",
+                    companyOwner: "Persson",
+                    sponsors: [
+                        {
+                            lastName: "Porser",
+                            firstName: "Jakob",
+                            investmentsSum: 159879
+                        },
+                        {
+                            lastName: "Manne",
+                            firstName: "Carl",
+                            investmentsSum: 267489
+                        },
+                        {
+                            lastName: "Mask",
+                            firstName: "Oleg",
+                            investmentsSum: 65896
+                        }
+                    ]
+                },
+                productionYear: 2009,
+                totalPrice: 159897625
+            }
+        ]
+
+        // Знайти:
+        // 1) загальну вартість усіх сайтів
+        let totalPrice = sitesData.reduce((prevSum, currentSite) => prevSum + currentSite.totalPrice, 0)
+        document.write(`<h3>1) Загальна вартість усіх сайтів: ${totalPrice}</h3>`)
+
+
+        // 2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+        let producedBetween = sitesData.reduce((prevQty, currentSite) => currentSite.productionYear > 2000 && currentSite.productionYear < 2009 ? prevQty + 1 : prevQty, 0)
+        document.write(`<h3>2) Кількість сайтів, що було зроблено між 2000 та 2009 рр.: ${producedBetween}</h3>`)
+        // 3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+        let qtyOfInvestmentsSumHigherThan = 0
+        for (const site of sitesData) {
+            let totalInvestment = 0
+            for (const sponsor of site.company.sponsors) {
+                totalInvestment += sponsor.investmentsSum
+            }
+
+            if (totalInvestment > 100000) qtyOfInvestmentsSumHigherThan += 1
+        }
+
+        document.write(`<h3>3) Кількість сайтів, де сума спонсорських вкладень була більшою за 100000: ${qtyOfInvestmentsSumHigherThan}</h3>`)
+        // 4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+        let sponsors = []
+        for (const site of sitesData) {
+            for (const sponsor of site.company.sponsors) {
+                sponsors.push(sponsor)
+            }
+        }
+        document.write(`<h3>4) Загальний список усіх спонсорів: (console log)</h3>`)
+        console.log(sponsors);
+
+
+        // 5) знайти рік, коли прибуток був найбільшим
+        function findYearWithMaxProfit(sites) {
+            let maxProfit = -Infinity
+            let year
+            for (const site of sites) {
+                if (maxProfit < site.totalPrice) {
+                    maxProfit = site.totalPrice
+                    year = site.productionYear
+                }
+            }
+            return year
+        }
+        document.write(`<h3>5) Рік, коли прибуток був найбільшим: ${findYearWithMaxProfit(sitesData)}</h3>`)
+        // 6) упорядкувати список за спаданням прибутку
+        let sortedSites = [...sitesData].sort((a, b) => b.totalPrice - a.totalPrice)
+        document.write(`<h3>6) Упорядкувати список за спаданням прибутку: (console log) </h3>`)
+        console.log(sortedSites);
+
+        // 7) Створити 2 окремих списки з копіями об'єктів, що містять сайти з вартість до 10000 і більше 10000
+        let sitesExpensiveThanTen = []
+        let sitesLowerThanTen = []
+
+        sitesData.filter((site) => site.totalPrice > 10000 ? sitesExpensiveThanTen.push(site) : sitesLowerThanTen.push(site))
+
+
+        document.write(`<h3>7) 2 окремих списки з копіями об'єктів, що містять сайти з вартість до 10000 і більше 10000: (console log) </h3>`)
+        console.log(sitesExpensiveThanTen);
+        console.log(sitesLowerThanTen)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
