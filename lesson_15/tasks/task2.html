@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <!-- ! Задача 2. Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку. Тир. Поля(властивості): Масив, у якому зберігається поле з зайцями. Методи (дії): Метод пострілу (задається позиція пострілу), Виведення ігрового поля  -->
+    <script>
+
+        class ShootingRange {
+            constructor(size) {
+                this.field = Array.from({ length: size }, () => Math.round(Math.random()))
+            }
+            showField() {
+                document.write(`<h3>Field: ${this.field.join("|")}</h3>`)
+            }
+            shot(position) {
+                if (this.field[position] === 1) {
+                    alert("Nice shot! ")
+                    this.field[position] = 0
+                } else alert("Miss")
+            }
+            shooting(attempts) {
+                let attempt = 0
+                while (attempt < attempts && this.field.includes(1)) {
+                    let userPosition = parseInt(prompt("Enter field position", "2"))
+                    this.shot(userPosition - 1)
+                    attempt++
+                }
+            }
+        }
+
+        let game = new ShootingRange(5)
+        game.shooting(5)
+        game.showField()
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

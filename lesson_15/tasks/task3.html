@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+
+<body>
+    <!-- ! Задача 3. Створити об’єкт «Авто». Авто. Поля(властивості):  Марка, Розмір бака, Кількість наявних літрів, Кількість місць, Кількість пасажирів. Методи (дії): Заправка на вказану кількість літрів, Виведення кількості пасажирів, Додавання пасажирів, Висадка пасажирів.   -->
+    <script>
+        class Auto {
+            constructor(model, tank, totalGasoline, capacity, passengers) {
+                this.autoModel = model
+                this.autoTankCapacity = tank
+                this.autoTotalFuel = totalGasoline
+                this.autoCapacity = capacity
+                this.autoPassengers = passengers
+            }
+
+            fueling(fuel) {
+                let totalFuel = this.autoTotalFuel + fuel
+                if (totalFuel > this.autoTankCapacity) alert("Not enough space")
+                else this.autoTotalFuel = totalFuel
+            }
+
+            showPassengers() {
+                document.write(`<h3>Total passengers: ${this.autoPassengers}</h3>`)
+            }
+
+            boarding(qty) {
+                let totalPassengers = this.autoPassengers + qty
+                if (totalPassengers > this.autoCapacity) alert("Not enough space")
+                else this.autoPassengers = totalPassengers
+            }
+
+            disembarkation(qty) {
+                if (this.autoPassengers - qty < 0) alert("Incorrect value")
+                else this.autoPassengers -= qty
+            }
+        }
+
+        let newCar = new Auto("Audi", 200, 120, 5, 3)
+        console.log(newCar);
+        newCar.fueling(100)
+        newCar.fueling(80)
+        newCar.boarding(2)
+        newCar.disembarkation(7)
+        console.log(newCar);
+        document.write("<h3>Console log</h3>")
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
