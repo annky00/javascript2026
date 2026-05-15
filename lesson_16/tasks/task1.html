@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+    <!-- ! Задача 1. Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. Введення та виведення дати реалізувати за допомогою методу toString.-->
+    <script>
+
+        class TDate {
+            #year
+            #month
+            #day
+            constructor(day, month, year) {
+                this.Year = year
+                this.Month = month
+                this.daysInMonth = [
+                    31, // Січень (1)
+                    28, // Лютий (2)
+                    31, // Березень (3)
+                    30, // Квітень (4)
+                    31, // Травень (5)
+                    30, // Червень (6)
+                    31, // Липень (7)
+                    31, // Серпень (8)
+                    30, // Вересень (9)
+                    31, // Жовтень (10)
+                    30, // Листопад (11)
+                    31  // Грудень (12)
+                ]
+                this.Day = day
+            }
+            get Year() {
+                return this.#year
+            }
+            set Year(newYear) {
+                if (newYear < 1) throw new Error("Incorrect year value");
+                this.#year = newYear
+            }
+            get Month() {
+                return this.#month
+            }
+            set Month(newMonth) {
+                if (newMonth < 1 || newMonth > 12) throw new Error("Incorrect month value")
+                this.#month = newMonth
+            }
+            get Day() {
+                return this.#day
+            }
+            set Day(newDay) {
+                let maxDaysInMonth = this.daysInMonth[this.Month - 1]
+                if (newDay < 1 || newDay > maxDaysInMonth) throw new Error("Incorrect date value");
+                this.#day = newDay
+            }
+            addYears(yearQty) {
+                this.Year += yearQty
+            }
+            removeYears(yearQty) {
+                this.Year -= yearQty
+            }
+            addMonth(monthQty) {
+                let newMonthQty = this.Month + monthQty
+                if (newMonthQty > 12) {
+                    this.addYears(Math.floor((newMonthQty - 1) / 12))
+                    this.Month = ((newMonthQty - 1) % 12) + 1;
+                } else this.Month = newMonthQty
+
+                if (this.Day > this.daysInMonth[this.Month - 1]) {
+                    this.Day = this.daysInMonth[this.Month - 1]
+                }
+            }
+            removeMonth(monthQty) {
+                let newMonthQty = this.Month - monthQty
+                while (newMonthQty < 1) {
+                    this.removeYears(1)
+                    newMonthQty += 12
+                }
+                this.Month = newMonthQty
+
+
+                if (this.Day > this.daysInMonth[this.Month - 1]) {
+                    this.Day = this.daysInMonth[this.Month - 1]
+                }
+            }
+            addDays(daysQty) {
+                let newDay = this.Day + daysQty
+                while (newDay > this.daysInMonth[this.Month - 1]) {
+                    newDay -= this.daysInMonth[this.Month - 1]
+                    this.addMonth(1)
+                }
+                this.Day = newDay
+            }
+            removeDays(daysQty) {
+                let newDay = this.Day - daysQty
+                while (newDay < 1) {
+                    this.removeMonth(1);
+                    newDay += this.daysInMonth[this.Month - 1];
+                }
+
+                this.Day = newDay;
+            }
+            toString() {
+                return `<h3>Date: ${this.Day}.${this.Month}.${this.Year}</h3>`
+            }
+        }
+
+        let date = new TDate(28, 2, 2003)
+        date.addYears(3)
+        date.addMonth(2)
+        date.addDays(30)
+        date.removeDays(32)
+        console.log(date);
+        document.write(date)
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>

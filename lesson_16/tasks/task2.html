@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <!-- ! Задача 2. Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі.   -->
+    <script>
+        class TMoney {
+            #usd
+            constructor(money, course = 44.17) {
+                this.Usd = money
+                this.usdCourse = course
+            }
+
+
+            get Usd() {
+                return this.#usd
+            }
+            set Usd(newValue) {
+                if (newValue < 0) throw new Error("Incorrect value");
+                this.#usd = newValue
+            }
+
+            addMoney(money) {
+                this.Usd += (money / this.usdCourse)
+            }
+
+            removeMoney(money) {
+                let currentMoney = this.Usd - (money / this.usdCourse)
+                if (currentMoney < 0) throw new Error("Incorrect value. Not enough money")
+                else this.Usd = currentMoney
+            }
+
+            getRateFor100UahProfit() {
+                let currentUah = this.Usd * this.usdCourse
+                let desiredUah = currentUah + 100
+                let newCourse = desiredUah / this.Usd
+                return newCourse
+            }
+
+            toString() {
+                return `<h3>Your USD balance: ${this.Usd}</h3>`
+            }
+        }
+
+
+        let myMoney = new TMoney(300)
+        console.log(myMoney);
+        myMoney.addMoney(35224)
+        console.log(myMoney);
+        myMoney.removeMoney(3502)
+        console.log(myMoney.getRateFor100UahProfit());
+        document.write(myMoney)
+        document.write(myMoney.getRateFor100UahProfit())
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
