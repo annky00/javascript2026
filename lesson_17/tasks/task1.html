@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+    <!-- ! Задача 1. Створити клас, що дозволяє виконувати такі операції над масивами: знаходження кількості додатних, кількості від’ємних, кількість входжень деякого числа (статичні методи)-->
+    <script>
+
+        class Operations {
+
+            static countPositive(array) {
+                return array.reduce((sum, curVal) => curVal > 0 ? sum += 1 : sum, 0)
+            }
+            static countNegative(array) {
+                return array.reduce((sum, curVal) => curVal < 0 ? sum += 1 : sum, 0)
+            }
+            static countSearchNum(array, searchNum) {
+                return array.reduce((sum, curVal) => curVal === searchNum ? sum += 1 : sum, 0)
+            }
+
+        }
+        array = [
+            1, -10, 15, 25, 32, -38, 5, -40, 32
+        ]
+
+        document.write(`<h3>Positive numbers: ${Operations.countPositive(array)}</h3>`);
+        document.write(`<h3>Negative numbers: ${Operations.countNegative(array)}</h3>`);
+        document.write(`<h3>Searched numbers: ${Operations.countSearchNum(array, 32)}</h3>`);
+
+    </script>
+    <a href="../index.html">back</a>
+</body>
+
+</html>
