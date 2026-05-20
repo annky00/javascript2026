@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="calculator">
+            <div class="inputs-area">
+                <label for="num1">Enter first number:</label>
+                <input type="number" id="num1">
+                <label for="num2">Enter second number:</label>
+                <input type="number" id="num2">
+            </div>
+            <div class="buttons-area">
+                <button type="button" id="minus">minus</button>
+                <button type="button" id="plus">plus</button>
+                <button type="button" id="multiply">multiply</button>
+                <button type="button" id="divide">divide</button>
+            </div>
+            <div class="calculator__result">
+                <p>Result:</p>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .calculator {
+            background-color: rgb(97, 37, 27);
+            margin: 0 auto;
+            max-width: 250px;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgb(202, 202, 202);
+        }
+
+        .inputs-area {
+            display: inline-flex;
+            background-color: rgb(70, 27, 19);
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        input {
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: black;
+            border-radius: 5px;
+            color: white;
+            transition: all 0.5s;
+            padding: 2px 10px;
+        }
+
+        button:hover {
+            background-color: rgb(73, 4, 4);
+            transition: all 0.5s;
+        }
+    </style>
+
+    <!-- ! Задача 1. Розробити калькулятор-->
+    <script>
+
+        function findResult(btn) {
+            const valueEl1 = document.getElementById("num1")
+            const value1 = Number(valueEl1.value)
+            const valueEl2 = document.getElementById("num2")
+            const value2 = Number(valueEl2.value)
+            let result
+            if (btn.id === "minus") result = value1 - value2
+            if (btn.id === "plus") result = value1 + value2
+            if (btn.id === "multiply") result = value1 * value2
+            if (btn.id === "divide") result = value1 / value2
+
+            let resultEl = document.querySelector(".calculator__result")
+
+            resultEl.innerText = result
+
+        }
+
+        const num1 = document.getElementById("num1")
+        const num2 = document.getElementById("num2")
+
+        const buttons = document.querySelectorAll("button")
+        for (const button of buttons) {
+            button.onclick = function () {
+                findResult(button)
+            }
+
+        }
+
+
+    </script>
+    <a href="../index.html" style="font-size: 25px; color: white;">back</a>
+</body>
+
+</html>
