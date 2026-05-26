@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <label>
+            Value 1:
+            <input type="number">
+        </label>
+        <label>
+            Value 2:
+            <input type="number">
+        </label>
+        <label>
+            Value 3:
+            <input type="number">
+        </label>
+        <label>
+            Value 4:
+            <input type="number">
+        </label>
+        <label>
+            Value 5:
+            <input type="number">
+        </label>
+    </div>
+
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        input {
+            border-radius: 5px;
+            background-color: rgb(82, 10, 14);
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <!-- ! Задача 2. Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично заповнювати інші (усі попередні у спадному порядку(кожен попередній має значення на 1 менше за наступний), усі наступні на 1 більше (кожен наступне на 1 більше за попереднього) -->
+    <script>
+        function fillInputs() {
+            const curInput = this;
+            const originalValue = Number(curInput.value);
+
+            let prevValue = originalValue;
+            let prevLabel = curInput.parentElement.previousElementSibling;
+
+            while (prevLabel) {
+                prevValue -= 1;
+                const prevInput = prevLabel.querySelector('input');
+                if (prevInput) {
+                    prevInput.value = prevValue;
+                }
+                prevLabel = prevLabel.previousElementSibling;
+            }
+
+            let nextValue = originalValue;
+            let nextLabel = curInput.parentElement.nextElementSibling;
+
+            while (nextLabel) {
+                nextValue += 1;
+                const nextInput = nextLabel.querySelector('input');
+                if (nextInput) {
+                    nextInput.value = nextValue;
+                }
+                nextLabel = nextLabel.nextElementSibling;
+            }
+        }
+
+        const inputList = document.querySelectorAll('input');
+        for (const curInput of inputList) {
+            curInput.oninput = fillInputs;
+        }
+
+
+    </script>
+    <a href="../index.html" style="font-size: 25px; color: white;">back</a>
+</body>
+
+</html>

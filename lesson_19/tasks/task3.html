@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+
+<body>
+
+    <div class="field">
+    </div>
+
+    <button>press me</button>
+
+    <style>
+        .field {
+            display: flex;
+        }
+
+        body {
+            color: #fff;
+            background-color: black;
+        }
+
+        button {
+            border-radius: 5px;
+            padding: 10px 20px;
+            background-color: rgb(94, 11, 11);
+            color: #fff;
+            transition: all 0.5s;
+        }
+
+        ol {
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        button:hover {
+            background-color: rgb(131, 24, 24);
+            transition: all 0.5s;
+        }
+    </style>
+    <!-- ! Задача 3. Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами (кількість елементів у списку випадкова від 1 до 10, елементи випадкові – від 1 до 100). При натисненні на кнопку нумеровані списки з парною кількістю елементів зафарбувати у зелений колір, інші у червоний. -->
+    <script>
+        let field = document.querySelector('.field')
+
+        function generateList(parentElement) {
+            for (let o = 0; o < 5; o++) {
+                let newOl = document.createElement('ol')
+                parentElement.appendChild(newOl)
+                for (let l = 0; l <= Math.floor(Math.random() * 10); l++) {
+                    let newLi = document.createElement('li')
+                    newLi.textContent = `${1 + Math.floor(Math.random() * 100)}`
+                    newOl.appendChild(newLi)
+                }
+            }
+        }
+
+        generateList(field)
+
+        let button = document.querySelector('button')
+        function coloring() {
+            let olList = document.querySelectorAll('ol')
+            for (const ol of olList) {
+                if (ol.children.length % 2 === 0) {
+                    ol.classList.add('green')
+                } else ol.classList.add('red')
+            }
+
+        }
+
+        button.onclick = coloring
+
+    </script>
+    <a href="../index.html" style="font-size: 25px; color: white;">back</a>
+</body>
+
+</html>
