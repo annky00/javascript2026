@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: black;
+            overflow: hidden;
+            color: white;
+        }
+
+        .tank {
+            display: inline-block;
+            position: absolute;
+            cursor: crosshair;
+            transition: all 0.2s;
+            width: 100px;
+            height: 80px;
+        }
+    </style>
+    <!-- ! Задача 2. Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки, які їдуть вниз. При кліку на танк він вибухає і зникає з екрану. -->
+    <script>
+        class Tank {
+            constructor(speed) {
+                this.container = document.body
+                this.tankImgSource = '../img/tank.png'
+                this.explosionImgSource = '../img/explosion.png'
+                this.speed = speed
+
+                this.moveInterval = null;
+
+                this.image = document.createElement('img')
+                this.image.classList.add('tank')
+
+                this.image.src = this.tankImgSource
+                this.container.appendChild(this.image)
+
+                this.currentTop = -50
+                this.currentLeft = Math.floor(Math.random() * window.innerWidth)
+
+                this.image.style.top = `${this.currentTop}px`
+                this.image.style.left = `${this.currentLeft}px`
+
+                this.image.addEventListener('click', () => this.explode())
+
+                this.move()
+            }
+
+            move() {
+                this.moveInterval = setInterval(() => {
+                    this.currentTop += this.speed
+                    this.image.style.top = `${this.currentTop}px`
+
+                    if (this.currentTop >= window.innerHeight) {
+                        clearInterval(this.moveInterval)
+                        this.image.remove()
+                    }
+                }, 50)
+            }
+
+            explode() {
+                clearInterval(this.moveInterval)
+                this.image.src = this.explosionImgSource
+
+                setTimeout(() => this.image.remove(), 500)
+            }
+        }
+
+        setInterval(() => {
+            const randomSpeed = Math.floor(Math.random() * 5) + 2
+            new Tank(randomSpeed)
+        }, 1000);
+    </script>
+    <a href="../index.html" style="font-size: 25px; color: white;">back</a>
+</body>
+
+</html>

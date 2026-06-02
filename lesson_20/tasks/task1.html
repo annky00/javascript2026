@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+
+    <style>
+        body {
+            background-color: black;
+            overflow: hidden;
+            color: white;
+        }
+
+        .star {
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+    <!-- ! Задача 1. Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій частині екрану. Кожна зірка (це екземпляр класу Star) з певним кроком і інтервалом збільшується від мінімального до максимального розміру. Як тільки досягнути максимального розміру зірочка повинна з’являтися у іншій випадковій позиції.-->
+    <script>
+        class Star {
+            constructor(minSize, maxSize, step, interval) {
+                this.container = document.body
+                this.minSize = minSize
+                this.maxSize = maxSize
+                this.step = step
+                this.interval = interval
+                this.imgSource = '../img/star.png'
+
+                this.image = document.createElement('img')
+                this.image.classList.add('star')
+                this.image.src = this.imgSource
+                this.container.appendChild(this.image)
+
+                this.reset()
+                this.animate()
+            }
+
+            reset() {
+                this.currentSize = this.minSize
+
+                const x = Math.floor(Math.random() * window.innerWidth)
+                const y = Math.floor(Math.random() * window.innerHeight)
+
+                this.image.style.left = `${x}px`
+                this.image.style.top = `${y}px`
+
+                this.updateSize()
+            }
+
+            updateSize() {
+                this.image.style.width = `${this.currentSize}px`
+            }
+
+            animate() {
+                setInterval(() => {
+                    this.currentSize += this.step
+                    if (this.currentSize >= this.maxSize) this.reset()
+                    else this.updateSize()
+                }, this.interval)
+            }
+        }
+
+
+        setInterval(() => {
+            for (let i = 0; i < 5; i++) {
+                new Star(10, 50, 1, 100)
+
+            }
+        }, 1000)
+
+
+
+    </script>
+    <a href="../index.html" style="font-size: 25px; color: white;">back</a>
+</body>
+
+</html>
