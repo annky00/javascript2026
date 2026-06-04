@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+
+    <style>
+        body {
+            background-color: black;
+            overflow: hidden;
+            color: white;
+        }
+    </style>
+
+    <!-- ! Задача 1. Розробити клас Person (поля:ім'я, вік, адреса; методи: toString, визначення року народження). На основі класу Person  розробити клас Worker (додати поля: посада, розмір заробітної плати, кількість відсотів оподаткування; методи:визначення кількості виплачених коштів за рік, та визначення розміру податків).-->
+    <script>
+
+        class Person {
+            constructor(name, age, address) {
+                this.name = name
+                this.age = age
+                this.address = address
+            }
+
+            getBirthYear() {
+                const currentYear = new Date().getFullYear()
+                const yearOfBirth = currentYear - this.age
+                return yearOfBirth
+            }
+
+            toString() {
+                return `Name: ${this.name}, Age: ${this.age}, Address: ${this.address}`
+            }
+        }
+
+        class Worker extends Person {
+            constructor(name, age, address, position, salary, percent) {
+                super(name, age, address)
+
+                this.position = position
+                this.salary = Number(salary)
+                this.percent = Number(percent)
+
+            }
+
+            taxSum() {
+                const moneyTax = this.salary * this.percent / 100
+                return moneyTax
+            }
+
+            yearlySalary() {
+                const taxedSalary = this.salary - this.taxSum()
+                const salaryForYear = taxedSalary * 12
+                return salaryForYear
+            }
+
+        }
+
+    </script>
+    <a href="../index.html" style="font-size: 25px; color: white;">back</a>
+</body>
+
+</html>

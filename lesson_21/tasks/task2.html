@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: black;
+            overflow: hidden;
+            color: white;
+        }
+    </style>
+    <!-- ! Задача 2. Користувач задає місяць навчання учня (перевіряти чи є числом, чи від 1 до 12, чи не канікули) та оцінку (перевіряти чи є числом, чи від 1 до 100). Вивести чи зможе він виправити оцінку (якщо оцінка погана і це не останній місяць у семестрі) . Обробку усіх помилок зробити з використанням відповідних класів. -->
+    <script>
+
+        class NotANumberError extends Error {
+            constructor() {
+                super()
+                this.message = 'Not a Number'
+                this.name = 'NotANumberError'
+            }
+        }
+
+        class InvalidNumberError extends Error {
+            constructor(message) {
+                super(message)
+                this.name = "InvalidNumberError"
+            }
+        }
+
+        class VacationMonthError extends Error {
+            constructor() {
+                super()
+                this.message = 'This month is vacation'
+                this.name = "VacationMonthError"
+            }
+        }
+
+        class Pupil {
+            #month
+            #mark
+            constructor(month, mark) {
+                this.Month = month
+                this.Mark = mark
+            }
+
+            set Month(value) {
+                if (typeof value !== 'number') throw new NotANumberError()
+                if (value < 1 || value > 12) throw new InvalidNumberError('Month should be in range of 1 to 12')
+                if (value >= 6 && value <= 8) throw new VacationMonthError()
+
+                this.#month = value
+            }
+
+            get Month() {
+                return this.#month
+            }
+
+            set Mark(value) {
+                if (typeof value !== 'number') throw new NotANumberError()
+                if (value < 1 || value > 100) throw new InvalidNumberError('Mark should be in range of 1 to 100')
+
+                this.#mark = value
+            }
+
+            get Mark() {
+                return this.#mark
+            }
+
+            isCouldBeMarkChanged() {
+                if (this.#mark < 40 && this.#month !== 12 && this.#month !== 5) return 'Congratulation! You can change your marks'
+                else return "Sorry, you couldn't change your marks :("
+            }
+
+            toString() {
+                return `Month: ${this.#month}, mark: ${this.#mark}`
+            }
+        }
+
+        try {
+            let student1 = new Pupil(1, 35)
+
+            document.write(`<h1>${student1.isCouldBeMarkChanged()}</h1>`)
+
+        } catch (error) {
+            console.error(`Error: ${error.name} - ${error.message}`)
+
+        }
+
+        try {
+            let student2 = new Pupil(6, 30)
+
+            document.write(`<h1>${student2.isCouldBeMarkChanged()}</h1>`)
+
+        } catch (error) {
+            console.error(`Error: ${error.name} - ${error.message}`)
+        }
+
+        try {
+
+            let student3 = new Pupil(5, 80)
+
+            document.write(`<h1>${student3.isCouldBeMarkChanged()}</h1>`)
+
+        } catch (error) {
+            console.error(`Error: ${error.name} - ${error.message}`)
+        }
+
+
+
+
+
+
+    </script>
+    <a href="../index.html" style="font-size: 25px; color: white;">back</a>
+</body>
+
+</html>
